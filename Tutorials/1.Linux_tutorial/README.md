@@ -249,7 +249,203 @@
     - `grep` is an extremely powerful shell command that lets you select lines of text in a file that match a given string. In this case, if the line of text contains any word starting with `“my”` (e.g., `myfile`, `myfile2`) then they will be printed out.
 - You can get the output of a command as a variable using `$(CMD)`
 
-     ```bash
+    ```bash
     /foss/designs > echo "The current date is $(date)"
     ```
 
+## Aliases and symbolic links
+- Instead of writing out a whole (complex) command, use an alias with the syntax `alias alias_name="command_to_alias arg1 arg2"`
+
+    ```bash
+    /foss/designs > alias ll="ls -ltrh"
+    /foss/designs > alias gv="grep -V"
+    /foss/designs > alias grl="grep --color --line-number"
+    ```
+
+- To see a list of all configured aliases, type alias.
+    ```bash
+    /foss/designs > alias | less
+    ```
+
+- And you can create a link (shortcut) to a file or directory for quick access:
+    ```bash
+    /foss/designs > ln -s myfile mylink
+    ```
+
+## Writing an executable program
+- Let’s start by writing an executable “Hello, World!” program:
+    - Create a file that prints out “Hello, World!”:
+
+        ```bash
+        /foss/designs > echo 'echo "Hello, World!"' > hello
+        ```
+- Now try to execute the file:
+    - Ah, we need to make it executable… `chmod u+x hello`
+
+- But how can we tell it to use `Bash` (rather than another shell) to run our program?
+    - We’ll use the very popular `VIM` text editor:
+        ```bash
+        /foss/designs > vim hello
+        ```
+
+    - Press “i“ to go into “insert” mode.
+    - Now type:
+        ```bash
+        #!/bin/bash
+        echo "hello"
+        ```
+    - Hit esc to exit “insert” mode.
+    - To save and exit, type :wq
+
+## Variables
+- The shell, like other programming languages, has variables.
+- In `Bash`, we just write `var=value` (no spaces!) to define a variable
+
+    ```bash
+    /foss/designs > foo=bar
+    ```
+
+    - Pay attention that using quotations (`“”`) will substitute values, while `‘’` will not:
+
+        ```bash
+        /foss/designs > echo "$foo"
+        /foss/designs > echo '$foo'
+        ```
+
+- Variables are local to the shell, so they aren’t known to programs
+
+    - Instead, you can use environment variables, such as `$PATH`, `$HOME`.
+
+    - You can access environment variables from within programs.
+
+    - To see a list of environment variables, type `env`.
+        
+        ```bash
+        /foss/designs > env | more
+        ```
+
+    - To define a new environment variable, type `export`:
+
+        ```bash
+        /foss/designs > export charlie=brown
+        ```
+
+## Shell Scripting
+- Bash supports regular control flow commands, such as if, case, while, for.
+- In addition, you can write scripts, and pass arguments to them:
+    - $0 – name of the script
+    - $1-$9 – arguments
+    - $@ all the arguments
+    - $# number of arguments
+    - $? – exit status of previous
+
+    ```bash
+    #!/bin/bash
+    echo "Running program $0 with $# arguments"
+    for file in "$@"; do
+        grep foobar "$file" > /dev/null 2> /dev/null
+        # If pattern not found, grep has exit status 1
+        # Redirect STDOUT and STDERR to a null register
+        if [[ $? -ne 0 ]]; then
+            # If grep exited with status 1
+            echo "Adding foobar to $file"
+            echo "# foobar" >> "$file"
+        fi
+    done
+    ```
+- You can also call a script written in another language:
+
+    ```bash
+    #!/bin/python
+    print ("hello, world!")
+    ```
+
+## Compressing and Uncompressing
+- To compress a file in Linux, you can use the `zip` command:
+    
+    ```bash
+    /foss/designs > zip myfile.zip myfile.txt
+    ```
+
+- To uncompress a file: 
+
+    ```bash
+    /foss/designs > unzip myfile.zip 
+    ```
+
+- But in Linux we often compress a whole folder using `tar`:
+
+    ```bash
+    /foss/designs > tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+    ```
+
+- Then extract the archive:
+
+    ```bash
+    /foss/designs > tar -xzvf archive.tar.gz
+    ```
+
+## Jobs control
+- Sometimes you need to send a software interrupt to your process, while it is still running (or possibly stuck…)
+    
+    - `Ctrl-c`: Sends a `SIGINT` signal to the process, usually killing it.
+    - `Ctrl-\`: Sends a `SIGQUIT` signal to the process, killing it.
+    - `Ctrl-z`: Sends a `SIGSTP` signal that pauses a process.
+        - To continue a process after pausing it, type the `fg` command.
+        - To continue running the process in the background, type the `bg` command.
+    - To start a command running in the background, use `&`. 
+        
+        ```/foss/designs firefox &```
+
+- To see all unfinished jobs (run from this terminal) type `jobs`.
+
+    - The jobs are listed as `[n]`. You can control the specific job with `%n`.
+
+    - For example, move the first process to the foreground using `fg %1`.
+
+    - Kill the second process using `kill %2`.
+
+    - If you have some stubborn GUI that won’t die, use `xkill`.
+
+- To see all running processes, use the `ps` command.
+    - `ps` will list all process running in this terminal
+
+    - `ps -u username` will list all the processes associated with a specific user
+
+    - `ps -A` will show all running processes
+
+- For a graphical representation, use the `top` or `htop` commands
+
+    <div style="text-align: center;">
+        <img src="./doc/top.png" width="800" >
+    </div>
+
+    <div style="text-align: center;">
+        <img src="./doc/htop.png" width="800" >
+    </div>
+
+    - Sort jobs in `top` by memory consumption by pressing shift-M.
+
+    - Kill a job from `top` by pressing k and then entering the PID.
+
+## And some cool commands to finish
+- Sort words in a file with the `sort` command:
+
+    ```bash
+    /foss/designs > sort names.txt
+    /foss/designs > sort -r names.txt
+    ```
+
+- Get rid of duplicates with the `uniq` command:
+
+    ```bash
+    /foss/designs > uniq names.txt
+    /foss/designs > sort names.txt | uniq
+    ```
+
+- Count the number of words in a file:
+
+    ```bash
+    /foss/designs > wc names.txt
+    /foss/designs > sort names.txt | uniq | wc
+    ```
