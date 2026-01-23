@@ -12,7 +12,7 @@ Shell commands that `make` executes to build a target or perform an action. Each
 
 ### Makefile Syntax
 ```Makefile
-targets: prerequisites
+targets: Dependencies
 	command
 	command
 	command
