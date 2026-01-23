@@ -10,6 +10,14 @@ Files or other targets that a target relies on. If a dependency is newer than th
 ### Commands:
 Shell commands that `make` executes to build a target or perform an action. Each command line in a rule must begin with a tab character. 
 
+### Makefile Syntax
+```Makefile
+targets: prerequisites
+	command
+	command
+	command
+```
+
 ## Common Makefile Commands/Targets and their Purpose:
 `make`: When executed without a specific target, `make` will build the first target defined in the Makefile (often named `all`).
 
