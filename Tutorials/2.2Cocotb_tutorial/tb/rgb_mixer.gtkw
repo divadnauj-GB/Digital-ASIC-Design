@@ -1,8 +1,0 @@
-rgb_mixer.clk
-rgb_mixer.rst_n
-rgb_mixer.inc
-rgb_mixer.dec
-rgb_mixer.led*
-rgb_mixer.PWM0
-rgb_mixer.PWM1
-rgb_mixer.PWM2
