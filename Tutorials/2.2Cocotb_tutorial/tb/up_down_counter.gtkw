@@ -1,0 +1,6 @@
+up_down_counter.clk
+up_down_counter.rst_n
+up_down_counter.enable
+up_down_counter.inc
+up_down_counter.dec
+up_down_counter.pwm_ref*
