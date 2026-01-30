@@ -616,5 +616,8 @@ make show_tb_edge_detector # open the waverform for tb_edge_detector
 make clean #clean up all generated files
 ```
 
+### Note {.alert}
+The full makefile can be found in [./Makefile](./Makefile)
+
 # Conclusion
 If you reached to this point, Contratulations!, now you are reay to start the next tutorial.
