@@ -552,7 +552,8 @@ endmodule
 - Alternativelly, using the following commands you can use `Verilator` to simulate the verilog design.
 
     ```bash
-    verilator --trace --timing --binary -Wno-moddup -Wno-fatal src/tb_up_down_counter.v src/up_down_counter.v -top-module tb_up_down_counter
+    verilator --trace --timing --binary -Wno-moddup -Wno-fatal src/tb_up_down_counter.v src/up_down_counter.v \
+    -top-module tb_up_down_counter
     ./obj_dir/Vtb_up_down_counter
     gtkwave tb_up_down_counter.vcd
     ```
@@ -676,7 +677,8 @@ gtkwave tb_edge_detector.vcd
 
 ```bash
 # Verilator Simulation
-verilator --trace --timing --binary -Wno-moddup -Wno-fatal  src/edge_detector.v tb/tb_edge_detector.v -top-module tb_edge_detector
+verilator --trace --timing --binary -Wno-moddup -Wno-fatal  src/edge_detector.v tb/tb_edge_detector.v \
+-top-module tb_edge_detector
 ./obj_dir/Vtb_edge_detector
 gtkwave tb_edge_detector.vcd
 ```
@@ -837,7 +839,8 @@ gtkwave tb_debounce.vcd
 ```
 
 ```bash
-verilator --trace --timing --binary -Wno-moddup -Wno-fatal  src/debounce.v tb/tb_debounce.v -top-module tb_debounce
+verilator --trace --timing --binary -Wno-moddup -Wno-fatal  src/debounce.v tb/tb_debounce.v \
+-top-module tb_debounce
 ./obj_dir/Vtb_debounce
 gtkwave tb_debounce.vcd
 ```
@@ -1200,7 +1203,8 @@ gtkwave tb_rbg_mixer.vcd
 ````
 
 ```bash
-verilator --trace --timing --binary -Wno-moddup -Wno-fatal  src/rgb_mixer.v src/debounce.v src/edge_detector.v src/PWM.v src/up_down_counter.v tb/tb_rgb_mixer.v -top-module tb_rgb_mixer
+verilator --trace --timing --binary -Wno-moddup -Wno-fatal  src/rgb_mixer.v src/debounce.v src/edge_detector.v \
+src/PWM.v src/up_down_counter.v tb/tb_rgb_mixer.v -top-module tb_rgb_mixer
 ./obj_dir/Vtb_rgb_mixer
 gtkwave tb_rgb_mixer.vcd
 ```
