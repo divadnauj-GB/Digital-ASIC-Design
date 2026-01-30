@@ -3,14 +3,6 @@ title: "Linux Tutorial "
 author: "Juan David Guerrero Balaguera, Ph.D"
 date: "January 25, 2026"
 output: beamer_presentation
-aspectratio: 169 
-theme: "CambridgeUS"
-colortheme: "dolphin"
-navigation: horizontal
-toc: true
-fontsize: "12pt"
-fonttheme: "professionalfonts"
-classoption: t
 ---
 
 # Introduction to Linux
