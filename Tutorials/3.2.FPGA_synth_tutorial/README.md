@@ -238,6 +238,6 @@ make all
 - Program the device using the `*.sof` file
 
     ```bash
-    quartus_pgm  -m jtag -o "p;output_files/de1_basic_project.sof" 
+    quartus_pgm  -m jtag -o "p;output_files/rgb_mixer.sof" 
     ```
 
