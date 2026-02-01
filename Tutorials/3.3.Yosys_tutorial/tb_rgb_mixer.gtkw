@@ -1,0 +1,10 @@
+
+tb_rgb_mixer.PWM0
+tb_rgb_mixer.PWM1
+tb_rgb_mixer.PWM2
+tb_rgb_mixer.clk
+tb_rgb_mixer.dec
+tb_rgb_mixer.inc
+tb_rgb_mixer.led[1:0]
+tb_rgb_mixer.rst_n
+tb_rgb_mixer.up
