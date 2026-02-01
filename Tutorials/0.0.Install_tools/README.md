@@ -55,7 +55,7 @@ In the command window, type these commands:
 
 ```bash
 SET DOCKER_TAG=2025.07
-SET DESIGNS="C:\Users\matt2\asic"
+SET DESIGNS="C:<User Path>\asic"
 ```
 
 ## Start the Docker
