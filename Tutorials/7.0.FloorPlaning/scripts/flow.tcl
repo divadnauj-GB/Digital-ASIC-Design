@@ -22,6 +22,35 @@ initialize_floorplan -site $site \
 
 #initialize_floorplan -utilization ${utilization} -aspect_ratio 1.0 -core_space 10.0 -site $site
 
+source $tracks_file
+
+
+# remove buffers inserted by synthesis
+remove_buffers
+
+if { $pre_placed_macros_file != "" } {
+  source $pre_placed_macros_file
+}
+
+################################################################
+# Macro Placement
+if { [have_macros] } {
+  lassign $macro_place_halo halo_x halo_y
+  set report_dir [make_result_file ${design}_${platform}_rtlmp]
+  rtl_macro_placer -halo_width $halo_x -halo_height $halo_y \
+    -report_directory $report_dir
+}
+
+################################################################
+# Tapcell insertion
+eval tapcell $tapcell_args ;# tclint-disable command-args
+
+################################################################
+# Power distribution network insertion
+source $pdn_cfg
+pdngen
+
+################################################################
 
 set global_place_pad_db [make_result_file ${design}_${platform}.db]
 write_db $global_place_pad_db
