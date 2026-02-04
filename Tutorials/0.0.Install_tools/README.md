@@ -64,7 +64,7 @@ At this point you should be able to start the Docker container.  The first time
 First ensure that the Docker app is running. Launch it from the start menu.
 Then, in the command window, make sure you're inside the unzipped IIC-OSIC repository and then run this command:
 
-```bash
+```powershell
 .\start_x.bat
 ```
 

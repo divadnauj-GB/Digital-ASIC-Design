@@ -16,7 +16,6 @@ async def my_first_test(dut):
     
     dut._log.info("Reset complete, starting counting") # Log a message
     
-
     await ClockCycles(dut.clk, 2000, False)
     dut.pwm_ref.value=500
     await ClockCycles(dut.clk, 2000, False)

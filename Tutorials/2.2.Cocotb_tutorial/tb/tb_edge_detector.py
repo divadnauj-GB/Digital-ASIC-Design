@@ -3,8 +3,6 @@ from cocotb.triggers import Timer, FallingEdge, ClockCycles, Join
 from cocotb.clock import Clock
 
 
-
-
 class pulse_gen():
     """This class emulates the pulses generated externally by a push button"""
     def __init__(self, clk, pulse ):
