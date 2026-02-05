@@ -196,15 +196,15 @@ write_sdc  $sdc_file
 export RESULTS_DIR=$(PWD)/results
 
 run: 
-    @echo "Running floorplanning..."
+    @echo "Running Placement..."
     openroad scripts/rgb_mixer_sky130hd.tcl
 
 clean:
-    @echo "Cleaning up floorplanning results..."
+    @echo "Cleaning up Placement results..."
     rm -rf results *.log
 ```
 
-### Executing the Floorplan step
+### Executing the Placement step
 ```bash
 make clean run
 ```
@@ -225,7 +225,7 @@ openroad> gui::show
 
 ## OpenROAD saving files
 
-- After executing the floorplan flow, the tool automatically stores temporary files used in the subsequent steps. 
+- After executing the placement flow, the tool automatically stores temporary files used in the subsequent steps. 
 
 ### Generated files
 ```bash

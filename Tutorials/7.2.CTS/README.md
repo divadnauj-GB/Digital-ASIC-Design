@@ -7,7 +7,7 @@ output: beamer_presentation
 
 # RGB Mixer example on OpenROAD
 
-## RGB mixer: Placement
+## RGB mixer: Clock Tree Synthesis (CTS)
 
 - The main steps of the flow are the following: 
     - Synthesis (Using Yosys)
@@ -95,7 +95,7 @@ include "scripts/flow.tcl"
 
 - Detailed list of OpenROAD commands: [https://openroad.readthedocs.io/en/latest/main/README2.html](https://openroad.readthedocs.io/en/latest/main/README2.html)
 
-- The full script in this example is available in [./Tutorials/7.1.Placement/scripts/flow.tcl](./scripts/flow.tcl)
+- The full script in this example is available in [./Tutorials/7.2.CTS/scripts/flow.tcl](./scripts/flow.tcl)
 
 --- 
 
@@ -206,15 +206,15 @@ write_sdc  $sdc_file
 export RESULTS_DIR=$(PWD)/results
 
 run: 
-    @echo "Running floorplanning..."
+    @echo "Running CTS..."
     openroad scripts/rgb_mixer_sky130hd.tcl
 
 clean:
-    @echo "Cleaning up floorplanning results..."
+    @echo "Cleaning up CTS results..."
     rm -rf results *.log
 ```
 
-### Executing the Floorplan step
+### Executing the CTS step
 ```bash
 make clean run
 ```
@@ -226,7 +226,7 @@ openroad> gui::show
 
 ---
 
-## RGB mixer Placement result
+## RGB mixer CTS result
 <div style="text-align: center;">
     <img src="./doc/rgb_mixer-CTS.png" width="100%" >
 </div>
@@ -235,7 +235,7 @@ openroad> gui::show
 
 ## OpenROAD saving files
 
-- After executing the floorplan flow, the tool automatically stores temporary files used in the subsequent steps. 
+- After executing the CTS flow, the tool automatically stores temporary files used in the subsequent steps. 
 
 ### Generated files
 ```bash

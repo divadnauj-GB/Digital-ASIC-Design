@@ -15,7 +15,7 @@ MAGIC_GDS_SCRIPT=$(TOOL_SCRIPTS)/magic/def/mag_gds.tcl
 MAGIC_DRC_ENV=scripts/tcl_env_mgds.tcl
 MAGIC_DRC_SCRIPT=$(TOOL_SCRIPTS)/magic/drc.tcl
 
-MAGIC_LVS_ENV=scripts/tcl_env_lvs.tcl
+MAGIC_LVS_ENV=scripts/tcl_env_mgds.tcl
 MAGIC_LVS_SCRIPT=$(TOOL_SCRIPTS)/magic/extract_spice.tcl
 
 all: mgds mdrc kgds kdrc lvs
@@ -71,6 +71,9 @@ lvs: mgds
 
 	netgen -batch source scripts/lvs_script.lvs
 
+sta: res
+	sta scripts/opensta.tcl
+
 clean:
 	@echo "Cleaning up DRC and LVS results..."
-	rm -rf results *.log
+	rm -rf results *.log *.rpt

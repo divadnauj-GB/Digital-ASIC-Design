@@ -7,7 +7,7 @@ output: beamer_presentation
 
 # RGB Mixer example on OpenROAD
 
-## RGB mixer: Placement
+## RGB mixer: Routing
 
 - The main steps of the flow are the following: 
     - Synthesis (Using Yosys)
@@ -75,9 +75,9 @@ include "scripts/flow.tcl"
 
 ### `flow.tcl`
 
-- This script contains the sequence of OpenROAD commands used during the CTS stage. 
+- This script contains the sequence of OpenROAD commands used during the Routing stage. 
 
-- The Following are the main CTS commands in OpenROAD
+- The Following are the main Routing commands in OpenROAD
 
     - `read_libraries`
     - `read_db CTS.db`
@@ -94,7 +94,7 @@ include "scripts/flow.tcl"
 
 - Detailed list of OpenROAD commands: [https://openroad.readthedocs.io/en/latest/main/README2.html](https://openroad.readthedocs.io/en/latest/main/README2.html)
 
-- The full script in this example is available in [./Tutorials/7.1.Placement/scripts/flow.tcl](./scripts/flow.tcl)
+- The full script in this example is available in [./Tutorials/7.3.Routing/scripts/flow.tcl](./scripts/flow.tcl)
 
 --- 
 
@@ -277,15 +277,15 @@ write_sdc  $sdc_file
 export RESULTS_DIR=$(PWD)/results
 
 run: 
-    @echo "Running floorplanning..."
+    @echo "Running routing..."
     openroad scripts/rgb_mixer_sky130hd.tcl
 
 clean:
-    @echo "Cleaning up floorplanning results..."
+    @echo "Cleaning up routing results..."
     rm -rf results *.log
 ```
 
-### Executing the Floorplan step
+### Executing the Routing step
 ```bash
 make clean run
 ```
@@ -297,7 +297,7 @@ openroad> gui::show
 
 ---
 
-## RGB mixer Placement result
+## RGB mixer Routing result
 <div style="text-align: center;">
     <img src="./doc/rgb_mixer-Routing.png" width="100%" >
 </div>
@@ -306,7 +306,7 @@ openroad> gui::show
 
 ## OpenROAD saving files
 
-- After executing the floorplan flow, the tool automatically stores temporary files used in the subsequent steps. 
+- After executing the routing flow, the tool automatically stores temporary files used in the subsequent steps. 
 
 ### Generated files
 ```bash
