@@ -10,8 +10,11 @@ output: beamer_presentation
 ## Setup the tools
 
 - Start the docker, enable the sky130a PDK and change to the repository: 
-./start_x.sh
-iic-pdk sky130A
+
+    ```bash
+    ./start_x.sh
+    iic-pdk sky130A
+    ```
 
 - Be sure you have already cloned the [Digital-Asic-Design](https://github.com/divadnauj-GB/Digital-ASIC-Design.git) repository. If you already have it, skip this step.
  
@@ -32,7 +35,7 @@ You can consult the Terminology glossary if you happen upon any unfamiliar terms
 I interviewed Prof. James Stine about creating open-source standard cells if you want to learn more about their design: https://www.zerotoasiccourse.com/post/interview-with-james-stine/
 Among the many files are the standard cells. These are regular sized units that can fulfil a simple function such as AND, OR, NOT gates, or flip-flops for storing a bit of data.
 
-In the Tutorial 3.3 directory run this command
+In the Tutorial 3.0 directory run this command
 
 ```bash
 make show_cells
