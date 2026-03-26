@@ -51,9 +51,9 @@ I’ll continue this example after having chosen a 2 input nand gate: `sky130_fd
 [Here’s a video]((https://www.youtube.com/watch?v=ajwZVAVo3yk&t=1s)) if you’re curious about when drive strength is important.
 
 
-## Adjust the simulation.spice file
+## Adjust the [simulation.spice](./simulation.spice) file
 
-Look at simulation.spice
+Look at [simulation.spice](./simulation.spice)
 - The first line is the title of the simulation.
 - The .lib file includes the models for the transistors. 
 - The .include line includes all the standard cells.
@@ -67,7 +67,7 @@ You can use `grep` to help you search, for example to find cells that match `�
 grep xor /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
 ```
 
-The `subckt` line defines the module’s inputs and outputs. We need to make sure when we instantiate it in the `simulation.spice` file, all the connections are made correctly. You will typically have connections for power, ground, substrate, inputs and outputs.
+The `subckt` line defines the module’s inputs and outputs. We need to make sure when we instantiate it in the `[simulation.spice](./simulation.spice)` file, all the connections are made correctly. You will typically have connections for power, ground, substrate, inputs and outputs.
 
 **VNB** is the substrate and should be connected to **VGND**. **VPB** is the `n-well` for **P** type MOSFETs and should be connected to **VPWR**. The `n-well` is a region of n type semiconductor that insulates the p diffusion layer from the p type substrate. This is why n channel MOSFETs don’t need a well, but p types do.
 
@@ -75,13 +75,13 @@ My 2 input nand example’s definition is like this:
 
 ```subckt sky130_fd_sc_hd__nand2_1 A B VGND VNB VPB VPWR Y```
 
-So I adjust my `simulation.spice` file to instantiate it like this:
+So I adjust my `[simulation.spice](./simulation.spice)` file to instantiate it like this:
 
 ```Xcell A B VGND VGND VPWR VPWR Y sky130_fd_sc_hd__nand2_1```
 
 ## Adjust the pulse definitions
 
-The `simulation.spice` file also contains the commands to create the inputs and plot the outputs.
+The `[simulation.spice](./simulation.spice)` file also contains the commands to create the inputs and plot the outputs.
 
 Take a look and read the comments. You won’t need to adjust the gnd and power nets but you will probably need to adjust the pulse creation and the plotting.
 
