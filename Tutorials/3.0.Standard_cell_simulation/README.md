@@ -25,7 +25,7 @@ output: beamer_presentation
 - Enter into the Turorial 3.0 as follows
 
     ```bash
-    cd ./Digital-ASIC-Design/Tutorials/3.0.Satndard_cell_simulation
+    cd ./Digital-ASIC-Design/Tutorials/3.0.Standard_cell_simulation
     ```
 
 ## The standard cells
